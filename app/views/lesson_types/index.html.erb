@@ -1,5 +1,6 @@
 <div class="row">
   <div class="span8 offset2">
+
     <table class="table table-condensed table-hover table-bordered">
       <thead>
       <tr>
@@ -12,13 +13,25 @@
 
       <% @lesson_types.each do |lesson_type| %>
           <tr>
-            <td><%= lesson_type.name %></td>
+            <td><%= link_to lesson_type.name, edit_lesson_type_path(lesson_type) %></td>
             <td><%= lesson_type.pupils_count %></td>
             <td><%= lesson_type.duration %></td>
-            <td><%= lesson_type.price_per_student %></td>
+            <td>
+              <%= lesson_type.price_per_student %>
+              <%= link_to(
+                          lesson_type_path(lesson_type),
+                          :class => 'btn btn-danger pull-right',
+                          :method => :delete,
+                          :confirm => 'Are you sure?'
+                  ) do %>
+                    <i class="icon-remove icon-white"></i>
+              <% end %>
+            </td>
           </tr>
       <% end %>
-
     </table>
+
+    <%= link_to 'Добавить', new_lesson_type_url, :class => 'btn btn-success pull-right' %>
+
   </div>
 </div>

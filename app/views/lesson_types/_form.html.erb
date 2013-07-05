@@ -1,3 +1,14 @@
+<% if @lesson_type.errors.any? %>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <ul>
+        <% @lesson_type.errors.full_messages.each do |msg| %>
+            <%= content_tag :li, msg, :id => "error_#{msg}" if msg.is_a?(String) %>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
 <%= form_for @lesson_type do |l| %>
     <%= l.label :name %>
     <%= l.text_field :name %>
@@ -10,4 +21,6 @@
 
     <%= l.label :price_per_student %>
     <%= l.text_field :price_per_student %>
+
+    <%= l.submit %>
 <% end %>
