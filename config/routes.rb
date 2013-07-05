@@ -2,8 +2,9 @@ LessonsScheduler::Application.routes.draw do
 
   resources :lesson_types
   resources :students
+  resources :timetable
 
-  root :to => 'lesson_types#index'
+  root :to => 'timetable#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -6,6 +6,10 @@ class Student < ActiveRecord::Base
   validates :bill, :presence => true, :numericality => {:greater_than_or_equal_to => 0, :less_than => 9999}
   validates :name, :presence => true, :uniqueness => true
 
+  def start_time
+    self.updated_at
+  end
+
   def default_values
     self.bill = 0
   end

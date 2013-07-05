@@ -6,4 +6,7 @@
   <li class="<%= 'active' if params[:controller] == 'students' %>">
     <%= link_to('Students', url_for(students_path))  %>
   </li>
+  <li class="<%= 'active' if params[:controller] == 'timetable' %>">
+    <%= link_to('Timetable', url_for(:controller => 'timetable', :action => 'index'))  %>
+  </li>
 </ul>
