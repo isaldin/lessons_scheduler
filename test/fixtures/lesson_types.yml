@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  pupils_count: 1
+  duration: 1
+  price_per_student: 1
+
+two:
+  name: MyString
+  pupils_count: 1
+  duration: 1
+  price_per_student: 1
