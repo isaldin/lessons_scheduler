@@ -9,6 +9,16 @@
         <td>$ per pupil</td>
       </tr>
       </thead>
+
+      <% @lesson_types.each do |lesson_type| %>
+          <tr>
+            <td><%= lesson_type.name %></td>
+            <td><%= lesson_type.pupils_count %></td>
+            <td><%= lesson_type.duration %></td>
+            <td><%= lesson_type.price_per_student %></td>
+          </tr>
+      <% end %>
+
     </table>
   </div>
 </div>

@@ -1,0 +1,13 @@
+<%= form_for @lesson_type do |l| %>
+    <%= l.label :name %>
+    <%= l.text_field :name %>
+
+    <%= l.label :pupils_count %>
+    <%= l.text_field :pupils_count %>
+
+    <%= l.label :duration %>
+    <%= l.text_field :duration %>
+
+    <%= l.label :price_per_student %>
+    <%= l.text_field :price_per_student %>
+<% end %>
