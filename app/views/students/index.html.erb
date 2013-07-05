@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="span8 offset2">
+
+    <table class="table table-condensed table-hover table-bordered">
+      <thead>
+      <tr>
+        <td>Name</td>
+        <td>Timezone</td>
+        <td>Bill</td>
+        <td>Contacts</td>
+      </tr>
+      </thead>
+
+      <% @students.each do |student| %>
+          <tr>
+            <td><%= link_to student.name, edit_student_path(student) %></td>
+            <td><%= student.time_zone %></td>
+            <td><%= student.bill %></td>
+            <td>
+              <%= student.contacts %>
+              <%= link_to(
+                          student_path(student),
+                          :class => 'btn btn-danger pull-right',
+                          :method => :delete,
+                          :confirm => 'Are you sure?'
+                  ) do %>
+                  <i class="icon-remove icon-white"></i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+
+    <%= link_to 'Добавить', new_student_url, :class => 'btn btn-success pull-right' %>
+
+  </div>
+</div>

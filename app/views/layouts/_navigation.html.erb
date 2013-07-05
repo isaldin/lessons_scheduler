@@ -3,4 +3,7 @@
   <li class="<%= 'active' if params[:controller] == 'lesson_types' %>">
     <%= link_to('Lessons types', url_for(lesson_types_path))  %>
   </li>
+  <li class="<%= 'active' if params[:controller] == 'students' %>">
+    <%= link_to('Students', url_for(students_path))  %>
+  </li>
 </ul>

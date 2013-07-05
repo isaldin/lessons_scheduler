@@ -1,6 +1,7 @@
 LessonsScheduler::Application.routes.draw do
 
   resources :lesson_types
+  resources :students
 
   root :to => 'lesson_types#index'
 

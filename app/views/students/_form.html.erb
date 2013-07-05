@@ -1,0 +1,26 @@
+<% if @student.errors.any? %>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+            <%= content_tag :li, msg, :id => "error_#{msg}" if msg.is_a?(String) %>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<%= form_for @student do |s| %>
+    <%= s.label :name %>
+    <%= s.text_field :name %>
+
+    <%= s.label :time_zone %>
+    <%= s.text_field :time_zone %>
+
+    <%= s.label :bill %>
+    <%= s.text_field :bill %>
+
+    <%= s.label :contacts %>
+    <%= s.text_area :contacts, :rows => 5 %>
+
+    <br /><%= s.submit :class => 'btn btn-primary' %>
+<% end %>
