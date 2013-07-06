@@ -76,13 +76,47 @@
             },
             eventAfterRender: function(event, element, view)
             {
-                $(element).append($('<div/>', {
-                    html: '[x]',
-                    style: {
-                        position: 'absolute',
-                        left: '200px',
-                    },
-                }))
+                var del_div = $('<i/>',
+                        {
+                            css: {
+                                position: 'absolute',
+                                right: '5px',
+                                top: '2px',
+                                zIndex: 8888,
+                            },
+                            class: 'icon-remove',
+                        });
+                del_div.bind('click', function()
+                {
+                    console.log(event.lesson_id);
+
+                    $.ajax('lessons/'+event.lesson_id, {
+                        method: 'DELETE',
+                        data: { lesson_id: event.lesson_id },
+                        success: function(data){
+                            $('#calendar').fullCalendar('refetchEvents');
+                        },
+                    });
+                    return false;
+                });
+                var ok_div = $('<i/>',
+                        {
+                            css: {
+                                position: 'absolute',
+                                right: '20px',
+                                top: '2px',
+                                zIndex: 8888,
+                            },
+                            class: 'icon-ok',
+                        });
+                ok_div.bind('click', function(event)
+                {
+                    alert('o');
+                    return false;
+                });
+
+                $(element).append(ok_div);
+                $(element).append(del_div);
             },
             eventSources: [
                 {

@@ -51,4 +51,13 @@ class LessonsController < ApplicationController
     end
   end
 
+  def destroy
+    @lesson = Lesson.find(params[:id])
+    @lesson.destroy
+
+    respond_to do |format|
+      format.json { render json: {:code => :OK} }
+    end
+  end
+
 end
