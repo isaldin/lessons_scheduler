@@ -1,0 +1,13 @@
+<%= form_for @lesson do |lesson| %>
+    <%= lesson.label :start %>
+    <%= @lesson.start.strftime('%d.%m.%Y %H:%M') %>
+    <%= lesson.hidden_field :start %>
+
+    <%= lesson.label :student %>
+    <%= lesson.collection_select :student_id, Student.all, :id, :name %>
+
+    <%= lesson.label :lesson_type %>
+    <%= lesson.collection_select :lesson_type_id, LessonType.all, :id, :name %>
+
+    <br><%= lesson.submit :class => 'btn btn-primary' %>
+<% end %>

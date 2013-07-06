@@ -1,7 +1,10 @@
 class CreateLessons < ActiveRecord::Migration
   def change
     create_table :lessons do |t|
-      t.string :description
+      t.integer :lesson_type_id
+      t.integer :student_id
+      t.timestamp :start
+      t.timestamp :end
 
       t.timestamps
     end

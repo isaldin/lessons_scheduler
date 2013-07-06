@@ -5,7 +5,7 @@
 
         $('#calendar').fullCalendar({
             firstDay: 1,
-            defaultView: '<%=@period_view%>',
+            defaultView: 'month',
             allDaySlot: false,
             firstHour: 8,
             minTime: '8:00am',
@@ -25,12 +25,13 @@
             {
                 if(!allDay)
                 {
+                    var start = $.fullCalendar.formatDate(startDate, 'dd.MM.yyyy HH:mm');
                     console.log('startDate', startDate);
                     console.log('endDate', endDate);
                     console.log('allDay', allDay);
                     console.log('jsEvent', jsEvent);
                     console.log('view', view);
-                    console.log('<%= url_for(new_lesson_url) %>');
+                    window.location.href = '<%= new_lesson_url %>?start='+start;
                 }
             },
             eventMouseover: function(event, jsEvent, view)
@@ -79,21 +80,12 @@
             },
             eventClick: function(calEvent, jsEvent, view)
             {
-                alert('Event: ' + calEvent.title);
+                alert('Event: ' + calEvent.lesson_id);
+                $('#calendar').fullCalendar('updateEvent', calEvent);
             },
-            events: [
+            eventSources: [
                 {
-                    start: 'Sat Jul 06 2013 08:00:00 GMT+0600 (ALMT)',
-                    end: 'Sat Jul 06 2013 08:45:00 GMT+0600 (ALMT)',
-                    title: 'test',
-                    allDay: false,
-                    editable: true,
-                },
-                {
-                    start: 'Sat Jul 06 2013 18:00:00 GMT+0600 (ALMT)',
-                    end: 'Sat Jul 06 2013 19:45:00 GMT+0600 (ALMT)',
-                    title: 'test',
-                    allDay: false,
+                    url: '/lessons.json'
                 },
             ],
         })
