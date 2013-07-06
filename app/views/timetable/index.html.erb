@@ -16,6 +16,23 @@
             selectable: true,
             slotMinutes: 15,
             editable: true,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek'
+            },
+            select: function( startDate, endDate, allDay, jsEvent, view )
+            {
+                if(!allDay)
+                {
+                    console.log('startDate', startDate);
+                    console.log('endDate', endDate);
+                    console.log('allDay', allDay);
+                    console.log('jsEvent', jsEvent);
+                    console.log('view', view);
+                    console.log('<%= url_for(new_lesson_url) %>');
+                }
+            },
             eventMouseover: function(event, jsEvent, view)
             {
             },
@@ -78,7 +95,7 @@
                     title: 'test',
                     allDay: false,
                 },
-            ]
+            ],
         })
 
     });

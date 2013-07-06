@@ -6,7 +6,7 @@ class TimetableController < ApplicationController
   end
 
   def show
-    #
+    i = 0
   end
 
 end

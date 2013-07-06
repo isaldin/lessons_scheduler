@@ -2,6 +2,7 @@ LessonsScheduler::Application.routes.draw do
 
   resources :lesson_types
   resources :students
+  resources :lessons
   resources :timetable
 
   root :to => 'timetable#index'
