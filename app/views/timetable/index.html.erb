@@ -42,22 +42,21 @@
             },
             eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc)
             {
+                $.ajax('lessons/update_lesson', {
+                    data: {
+                        minute_delta: minuteDelta,
+                        day_delta: dayDelta,
+                        lesson_id: event.lesson_id
+                    },
+                    method: 'POST',
+                    success: function(data)
+                    {
+                        $('#calendar').fullCalendar('refetchEvents');
+                    },
+                });
 
-                alert(
-                        event.title + " was moved " +
-                                dayDelta + " days and " +
-                                minuteDelta + " minutes."
-                );
 
-                if (allDay) {
-                    alert("Event is now all-day");
-                }else{
-                    alert("Event has a time-of-day");
-                }
-
-                if (!confirm("Are you sure about this change?")) {
-                    revertFunc();
-                }
+                console.log(event.title + " was moved " + dayDelta + " days and " + minuteDelta + " minutes.");
 
             },
             columnFormat: {
@@ -69,19 +68,21 @@
             {
                 $('#calendar').fullCalendar('gotoDate', date);
                 $('#calendar').fullCalendar('changeView', 'agendaWeek');
-//                if (allDay)
-//                {
-//                    alert('Clicked on the entire day: ' + date);
-//                }
-//                else
-//                {
-//                    alert('Clicked on the slot: ' + date);
-//                }
             },
             eventClick: function(calEvent, jsEvent, view)
             {
                 alert('Event: ' + calEvent.lesson_id);
                 $('#calendar').fullCalendar('updateEvent', calEvent);
+            },
+            eventAfterRender: function(event, element, view)
+            {
+                $(element).append($('<div/>', {
+                    html: '[x]',
+                    style: {
+                        position: 'absolute',
+                        left: '200px',
+                    },
+                }))
             },
             eventSources: [
                 {

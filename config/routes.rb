@@ -5,6 +5,8 @@ LessonsScheduler::Application.routes.draw do
   resources :lessons
   resources :timetable
 
+  post 'lessons/update_lesson' => 'lessons#update_lesson'
+
   root :to => 'timetable#index'
 
   # The priority is based upon order of creation:

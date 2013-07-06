@@ -17,6 +17,20 @@ class LessonsController < ApplicationController
     end
   end
 
+  def update_lesson
+    @lesson = Lesson.find(params[:lesson_id])
+    new_start = @lesson.start + params[:day_delta].to_i.days + params[:minute_delta].to_i.minutes
+    @lesson.start = new_start
+
+    if @lesson.save
+      puts 'ok'
+    end
+
+    respond_to do |format|
+      format.json { render json: {:code => 'OK'} }
+    end
+  end
+
   def show
     i = 0
   end
