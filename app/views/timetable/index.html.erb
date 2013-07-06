@@ -88,6 +88,11 @@
                         });
                 del_div.bind('click', function()
                 {
+                    if(!confirm('Are you sure?'))
+                    {
+                        return false;
+                    }
+
                     console.log(event.lesson_id);
 
                     $.ajax('lessons/'+event.lesson_id, {
