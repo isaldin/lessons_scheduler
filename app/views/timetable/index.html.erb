@@ -5,6 +5,80 @@
 
         $('#calendar').fullCalendar({
             firstDay: 1,
+            defaultView: '<%=@period_view%>',
+            allDaySlot: false,
+            firstHour: 8,
+            minTime: '8:00am',
+            timeFormat: {
+                agenda: 'HH:mm{ - HH:mm}',
+                '': 'HH:mm{ - HH:mm}',
+            },
+            selectable: true,
+            slotMinutes: 15,
+            editable: true,
+            eventMouseover: function(event, jsEvent, view)
+            {
+            },
+            eventMouseout: function(event, jsEvent, view)
+            {
+            },
+            eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc)
+            {
+
+                alert(
+                        event.title + " was moved " +
+                                dayDelta + " days and " +
+                                minuteDelta + " minutes."
+                );
+
+                if (allDay) {
+                    alert("Event is now all-day");
+                }else{
+                    alert("Event has a time-of-day");
+                }
+
+                if (!confirm("Are you sure about this change?")) {
+                    revertFunc();
+                }
+
+            },
+            columnFormat: {
+                month: 'ddd',    // Mon
+                week: 'dddd dd.MM', // Mon 9/7
+                day: 'dddd dd.MM'  // Monday 9/7
+            },
+            dayClick: function(date, allDay, jsEvent, view)
+            {
+                $('#calendar').fullCalendar('gotoDate', date);
+                $('#calendar').fullCalendar('changeView', 'agendaWeek');
+//                if (allDay)
+//                {
+//                    alert('Clicked on the entire day: ' + date);
+//                }
+//                else
+//                {
+//                    alert('Clicked on the slot: ' + date);
+//                }
+            },
+            eventClick: function(calEvent, jsEvent, view)
+            {
+                alert('Event: ' + calEvent.title);
+            },
+            events: [
+                {
+                    start: 'Sat Jul 06 2013 08:00:00 GMT+0600 (ALMT)',
+                    end: 'Sat Jul 06 2013 08:45:00 GMT+0600 (ALMT)',
+                    title: 'test',
+                    allDay: false,
+                    editable: true,
+                },
+                {
+                    start: 'Sat Jul 06 2013 18:00:00 GMT+0600 (ALMT)',
+                    end: 'Sat Jul 06 2013 19:45:00 GMT+0600 (ALMT)',
+                    title: 'test',
+                    allDay: false,
+                },
+            ]
         })
 
     });

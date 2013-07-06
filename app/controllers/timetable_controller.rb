@@ -1,7 +1,8 @@
 class TimetableController < ApplicationController
 
   def index
-    @students = Student.all
+    @period_view = 'month'
+    #@period_view = 'agendaWeek'
   end
 
   def show
